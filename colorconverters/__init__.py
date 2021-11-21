@@ -1,3 +1,5 @@
+import requests
+
 colors_to_hex = {
     "bright_red": "#FF0000",
     "bright_blue": "#0000FF",
@@ -19,9 +21,18 @@ def color_to_hex(color):
     except:
         print("Returning hex from color failed!")
 
-
 def hex_to_color(hex):
-    if hex_to_colors.get(hex) is None:
-        return None
-    else:
-        return hex_to_colors[hex]
+    try:
+        if hex.startswith('#'):
+            hex = hex[1:]
+
+        request_url = f'https://www.thecolorapi.com/id?hex={hex}'
+
+        r = requests.get(request_url)
+
+        data = r.json()
+
+        return data['name']['value']
+
+    except:
+        return 'There was an error getting the color from the hex! Please make sure you have entered a legitimate value!'
