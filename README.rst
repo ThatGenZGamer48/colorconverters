@@ -8,6 +8,9 @@
    :target: https://pypi.python.org/pypi/colorconverters
    :alt: PyPI downloads
 
+Color Converters
+----------------
+
 A useful package which handles the utilities of converting colors to different forms.
 
 Notable Features
