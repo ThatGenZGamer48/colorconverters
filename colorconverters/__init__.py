@@ -1,38 +1,14 @@
-import requests
+from .colorutilities import *
 
-colors_to_hex = {
-    "bright_red": "#FF0000",
-    "bright_blue": "#0000FF",
-    "bright_green": "#00FF00"
-}
+version = ""
+with open("../VERSION.txt") as f:
+    version = f.read()
 
-hex_to_colors = {
-    "#FF0000": "bright_red",
-    "#0000FF": "bright_blue",
-    "#00FF00": "bright_green"
-}
+__title__ = "colorconverters"
+__summary__ = "A useful package which handles the utilities of converting colors to different forms."
+__author__ = "GenZ Gamer"
+__version__ = version
+__license__ = "MIT"
 
-def color_to_hex(color):
-    try:
-        if colors_to_hex.get(color) is None:
-            return None
-        else:
-            return colors_to_hex[color]
-    except:
-        print("Returning hex from color failed!")
-
-def hex_to_color(hex):
-    try:
-        if hex.startswith('#'):
-            hex = hex[1:]
-
-        request_url = f'https://www.thecolorapi.com/id?hex={hex}'
-
-        r = requests.get(request_url)
-
-        data = r.json()
-
-        return data['name']['value']
-
-    except:
-        return 'There was an error getting the color from the hex! Please make sure you have entered a legitimate value!'
+def get_version():
+    return __version__
